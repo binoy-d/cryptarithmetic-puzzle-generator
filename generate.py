@@ -1,6 +1,6 @@
 import random
-
-
+import textwrap
+import pyperclip
 
 
 def generate(solution_length:int)->list:
@@ -25,16 +25,16 @@ def generate(solution_length:int)->list:
 
 
 def format_test(num, inputs: list)->None:
-
-    
-    print(f"\n\nTEST(GeneratedCasesYes, YesTest_{num}_Size{len(inputs[2])})", end = "{\n")
-    print(f'    std::string s1 = "{inputs[0]}";')
-    print(f'    std::string s2 = "{inputs[1]}";')
-    print(f'    std::string s3 = "{inputs[2]}";')
-    print("    std::map<char, unsigned> puzzle;")
-    print(f'    bool p1 = puzzleSolver(s1, s2, s3, puzzle);')
-    print(f'    EXPECT_TRUE( p1 &&  gradeYesAnswer(s1, s2, s3, puzzle) );')
-    print("}\n\n")
+    out = f"\n\nTEST(GeneratedCasesYes, YesTest_{num}_Size{len(inputs[2])})"+"{\n"
+    out+=textwrap.fill(f'    std::string s1 = R"("{inputs[0]}")";', 75)+"\n";
+    out+=textwrap.fill(f'    std::string s2 = R"("{inputs[1]}")";', 75)+"\n";
+    out+=textwrap.fill(f'    std::string s3 = R"("{inputs[2]}")";', 75)+"\n";
+    out+="    std::map<char, unsigned> puzzle;\n"
+    out+='    bool p1 = puzzleSolver(s1, s2, s3, puzzle);\n'
+    out+='    EXPECT_TRUE( p1 &&  gradeYesAnswer(s1, s2, s3, puzzle) );\n'
+    out+="}\n\n"
+    print(out)
+    pyperclip.copy(out)
 
 if __name__ == '__main__':
     num = 0
