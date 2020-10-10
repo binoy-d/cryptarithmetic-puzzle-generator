@@ -24,7 +24,14 @@ def generate(solution_length:int)->list:
     return [s1code, s2code, s3code]
 
 
+def format_test(num, inputs: list)->None:
+    print(f"\n\nTEST(GeneratedCasesYes, YesTest_{num}_Size{len(inputs[2])})", end = "{\n")
+    print("\tstd::map<char, unsigned> puzzle;")
+    print(f'\tbool p1 = puzzleSolver("{inputs[0]}", "{inputs[1]}", "{inputs[2]}", puzzle);')
+    print(f'\tEXPECT_TRUE( p1 &&  gradeYesAnswer("{inputs[0]}", "{inputs[1]}", "{inputs[2]}", puzzle) );\n\n')
+    print("}\n\n")
 
 if __name__ == '__main__':
+    num = 0
     while True:
-        print(generate(int(input("How many digits should the solution have?  "))))
+        format_test(num:=num+1, generate(int(input("How many digits should the solution have?  "))))
