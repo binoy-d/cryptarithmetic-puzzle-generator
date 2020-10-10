@@ -10,10 +10,6 @@ def generate(solution_length:int)->list:
 
     letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     mapping = random.sample(letters, 10)
-    
-    s1 = "987654"
-    s2 = "890130"
-    solution = "1877784"
     s1code = ""
     s2code = ""
     s3code = ""
