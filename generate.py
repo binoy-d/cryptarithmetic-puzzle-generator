@@ -11,6 +11,9 @@ def generate(solution_length:int)->list:
     letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     mapping = random.sample(letters, 10)
     
+    s1 = "987654"
+    s2 = "890130"
+    solution = "1877784"
     s1code = ""
     s2code = ""
     s3code = ""
@@ -26,9 +29,9 @@ def generate(solution_length:int)->list:
 
 def format_test(num, inputs: list)->None:
     out = f"\n\nTEST(GeneratedCasesYes, YesTest_{num}_Size{len(inputs[2])})"+"{\n"
-    out+=textwrap.fill(f'    std::string s1 = R"("{inputs[0]}")";', 75)+"\n";
-    out+=textwrap.fill(f'    std::string s2 = R"("{inputs[1]}")";', 75)+"\n";
-    out+=textwrap.fill(f'    std::string s3 = R"("{inputs[2]}")";', 75)+"\n";
+    out+=f'    std::string s1 = "{inputs[0]}";'+"\n";
+    out+=f'    std::string s2 = "{inputs[1]}";'+"\n";
+    out+=f'    std::string s3 = "{inputs[2]}";'+"\n";
     out+="    std::map<char, unsigned> puzzle;\n"
     out+='    bool p1 = puzzleSolver(s1, s2, s3, puzzle);\n'
     out+='    EXPECT_TRUE( p1 &&  gradeYesAnswer(s1, s2, s3, puzzle) );\n'
