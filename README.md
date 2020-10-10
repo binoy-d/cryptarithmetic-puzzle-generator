@@ -1,4 +1,4 @@
-##Cryptarithmetic Puzzle Generator
+# Cryptarithmetic Puzzle Generator
 made for ICS46 2020 at UCI
 Generates test cases for Project 1
 
